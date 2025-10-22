@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth"; 
+
 console.log("Firebase auth object:", auth);
 
 const LoginPage = () => {
@@ -17,8 +18,10 @@ const LoginPage = () => {
     const [form, setForm] = useState({
         fullName: "",
         email:"",
-        pass: ""
+        password: ""
     })
+
+    console.log("Registrando con:", form.email, form.password);
 
     const [error, setError] = useState("")
 
@@ -39,7 +42,7 @@ const LoginPage = () => {
                 const userData = await createUserWithEmailAndPassword(
                     auth,
                     form.email,
-                    form.pass
+                    form.password
                 )
 
                 // SAVE
@@ -50,7 +53,7 @@ const LoginPage = () => {
                 alert("Register user correctly ✅")
                 console.log("Usuario registrado correctamente ✅")
             }else {
-                await signInWithEmailAndPassword(auth, form.email, form.pass)
+                await signInWithEmailAndPassword(auth, form.email, form.password)
             }
 
             router.push("/home");
@@ -92,9 +95,9 @@ const LoginPage = () => {
 
                 <input
                     type="password"
-                    name="pass"
+                    name="password"
                     placeholder="Password"
-                    value={form.pass}
+                    value={form.password}
                     onChange={handleChange}
                     required
                     className="border p-2 rounded"

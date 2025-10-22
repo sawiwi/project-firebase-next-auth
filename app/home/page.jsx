@@ -26,13 +26,13 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-green-50">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
       {user ? (
         <>
           <h1 className="text-3xl font-bold">
             Hey, {user.displayName || "User"} 
           </h1>
-          <p className="mt-2 text-gray-600">You are login correctly</p>
+          <p className="mt-2 text-gray-400">You have successfully logged in</p>
           <button
             onClick={handleLogout}
             className="mt-6 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition"
