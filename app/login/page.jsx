@@ -9,8 +9,6 @@ import {
   updateProfile,
 } from "firebase/auth"; 
 
-console.log("Firebase auth object:", auth);
-
 const LoginPage = () => {
 
     const router = useRouter()
@@ -20,21 +18,44 @@ const LoginPage = () => {
         email:"",
         password: ""
     })
-
-    console.log("Registrando con:", form.email, form.password);
-
+    const [loading, isLoading] = useState(false);
     const [error, setError] = useState("")
+    const [success, setSuccess] = useState("")
 
 
     const handleChange = (e) =>{
         setForm({...form, [e.target.name]: e.target.value})
-
+        setError("")
+        setSuccess("")
     };
 
 
+    // validates
+    const validateForm = ()=> {
+        if (isRegister && form.fullName.trim() === ""){
+            setError("Full name it is required")
+            return false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(form.email)) {
+        setError("Enter a valid email");
+        return false;
+        }
+
+        if (form.password.length <= 6 ){
+            setError("Password should be 6 characters at less")
+            return false;
+        }
+
+        return true;
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setError('')
+
+        if(!validateForm()) return;
+        isLoading(true)
 
         try{
             if(isRegister) {
@@ -50,15 +71,43 @@ const LoginPage = () => {
                     displayName: form.fullName,
                 })
 
-                alert("Register user correctly ✅")
-                console.log("Usuario registrado correctamente ✅")
+                setSuccess("Register user correctly ✅")
             }else {
+                
                 await signInWithEmailAndPassword(auth, form.email, form.password)
+                setSuccess("Login successful")
             }
+            setTimeout(() => {
+                router.push("/home");
 
-            router.push("/home");
+            }, 1000)
         }catch(error){
-            setError(error.message);
+
+            switch (error.code) {
+                case "auth/user-not-found":
+                setError("The user has not register. Please create a new user");
+                break;
+                case "auth/wrong-password":
+                    setError("Invalid password. Try again.");
+                    break;
+                case "auth/email-already-in-use":
+                    setError("This email has already register. Sign In.");
+                    break;
+                case "auth/invalid-email":
+                    setError("Email format it is not valid");
+                    break;
+                case "auth/weak-password":
+                    setError("Password should have 6 character at less");
+                    break;
+                case "auth/invalid-credential":
+                    setError("The user is not register or password is invalid");
+                    break;
+                default:
+                    setError("Something are wrong. Try again later please.");
+            }
+            
+        }   finally {
+            isLoading(false)
         }
     }
 
@@ -107,20 +156,40 @@ const LoginPage = () => {
 
                 <button
                     type="submit"
-                    className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+                    disabled={loading}
+                    className={`bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition ${
+                        loading ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
                 >
-                    {isRegister ? "Register" : "Login"}
+                    {/* {isRegister ? "Register" : "Login"} */}
+                    {loading
+                    ? "Cargando..."
+                    : isRegister
+                    ? "Registrarse"
+                    : "Iniciar Sesión"}
                 </button>
                 </form>
 
+                {/* {error && (
+                    <div className="my-2 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+                        {error}
+                    </div>
+                    )} */}
+
+                {success && (
+                    <div className="my-2 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
+                        {success}
+                    </div>
+                    )}
+
                 <p className="text-sm mt-4 text-center">
-                {isRegister ? "¿Do you have account?" : "I dont have account"}{" "}
-                <button
-                    onClick={() => setIsRegister(!isRegister)}
-                    className="text-blue-300 font-semibold"
-                >
-                    {isRegister ? "Sign In" : "Register here!"}
-                </button>
+                    {isRegister ? "¿Do you have account?" : "I dont have account"}{" "}
+                    <button
+                        onClick={() => setIsRegister(!isRegister)}
+                        className="text-blue-300 font-semibold"
+                    >
+                        {isRegister ? "Sign In" : "Register here!"}
+                    </button>
                 </p>
             </div>
         </div>
