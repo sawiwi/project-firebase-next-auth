@@ -50,6 +50,15 @@ pnpm dev
 bun dev
 ```
 
+### Env variables
+
+apiKey: "AIzaSyB5Bv7d5q2bJjIpJeow-vyL9h4_XVBGIXE"
+authDomain: "next-firebase-auth-3c12a.firebaseapp.com"
+projectId: "next-firebase-auth-3c12a"
+storageBucket: "next-firebase-auth-3c12a.firebasestorage.app"
+messagingSenderId: "953791361377"
+appId: "1:953791361377:web:6e09a6d1fbd54c4661d520"
+
 ### Clonar el repositorio
 ```bash
 git clone https://github.com/sawiwi/project-firebase-next-auth.git
@@ -95,7 +104,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ### Author
 
-Proyecto técnico guiado por Fabian Astete
+Project by Fabian Astete
 
 -Dublin, Ireland
 -fabian.astete.salas@gmail.com
