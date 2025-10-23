@@ -2,6 +2,42 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+## Description
+
+Project on a **simple authentication application** created with **Next.js 16** and **Firebase Authentication**, developed as part of a technical evaluation.  
+The web application allows you to **register new users**, **log in** and **log out**, displaying a personalized message to the user after authenticating.
+
+---
+
+## 🚀 Tecnologies
+
+- [Next.js 16](https://nextjs.org/)
+- [React](https://react.dev/)
+- [Firebase Authentication](https://firebase.google.com/docs/auth)
+- [Tailwind CSS](https://tailwindcss.com/) style
+- [Vercel](https://vercel.com/) (deploy)
+
+---
+
+
+## Project Structure
+
+next-firebase-auth/
+├── app/
+│ ├──login
+│      └──page.jsx #Login/Registro page 
+│ ├──home
+│      └──page.jsx #home page after login
+│ ├── page.jsx 
+│ ├── layout.tsx # Layout of app
+├── lib/
+│ └── firebaseClient.js # Firebase setup and initialization
+├── public/
+│ └── favicon.ico
+├── .env.local # Env variables of Firebase
+├── package.json
+└── README.md
+
 First, run the development server:
 
 ```bash
@@ -13,6 +49,13 @@ pnpm dev
 # or
 bun dev
 ```
+
+### 1️⃣ Clonar el repositorio
+```bash
+git clone https://github.com/sawiwi/project-firebase-next-auth.git
+cd project-firebase-next-auth
+
+npm install
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { auth } from "@/lib/firebaseClient";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
-const Home = () => {
+const HomePage = () => {
   const [user, setUser] = useState(null)
   const router = useRouter()
 
@@ -47,4 +47,4 @@ const Home = () => {
   );
 }
 
-export default Home
+export default HomePage
