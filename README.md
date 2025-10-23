@@ -50,12 +50,26 @@ pnpm dev
 bun dev
 ```
 
-### 1️⃣ Clonar el repositorio
+### Clonar el repositorio
 ```bash
 git clone https://github.com/sawiwi/project-firebase-next-auth.git
 cd project-firebase-next-auth
 
 npm install
+
+
+
+### Challenges and Learnings
+
+Challenges faced related to:
+
+Firebase configuration errors (auth/configuration-not-found) error 400
+
+Firebase specific error handling (auth/invalid-credential)
+
+State control between registration and login.
+
+With this, I strengthened my handling of authentication with Firebase, error handling and UX feedback in React/Next.js applications.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -77,3 +91,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+### Author
+
+Proyecto técnico guiado por Fabian Astete
+
+-Dublin, Ireland
+-fabian.astete.salas@gmail.com
+-GitHub https://github.com/sawiwi
+-LinkedIn https://www.linkedin.com/in/fabian-astete-salas-820a45190/
