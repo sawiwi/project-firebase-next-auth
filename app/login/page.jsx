@@ -163,10 +163,10 @@ const LoginPage = () => {
                 >
                     {/* {isRegister ? "Register" : "Login"} */}
                     {loading
-                    ? "Cargando..."
+                    ? "Loading..."
                     : isRegister
-                    ? "Registrarse"
-                    : "Iniciar Sesión"}
+                    ? "Register"
+                    : "Sign In"}
                 </button>
                 </form>
 
